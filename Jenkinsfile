@@ -37,8 +37,10 @@ pipeline {
         }
         stage ('API Test') {
             steps {
-                git branch: 'main', credentialsId: 'github_login', url: 'https://github.com/renato-viana/tasks-api-test'
-                bat 'mvn test'
+                dir('api-test') {
+                    git branch: 'main', credentialsId: 'github_login', url: 'https://github.com/renato-viana/tasks-api-test'
+                    bat 'mvn test'
+                }
             }
         }
     }
