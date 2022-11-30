@@ -52,5 +52,13 @@ pipeline {
                 }
             }
         }
+        stage ('Functional Test') {
+            steps {
+                dir('functional-test') {
+                    credentialsId: 'github_login', url: 'https://github.com/renato-viana/tasks-functional-test'
+                    bat 'mvn test'
+                }
+            }
+        }
     }
 }
